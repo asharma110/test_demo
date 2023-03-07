@@ -1,1 +1,11 @@
-hello adi
+num=$1
+
+for file in *; do
+if [ -f "$file" ] && [ $(stat -c%s "$file") -ge $num ]; then
+echo "$file"
+fi
+done
+
+if ! ls -p * | grep -q '/'; then
+echo "No files in the current directory larger than or equal to $num"
+fi
